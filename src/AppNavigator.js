@@ -1,10 +1,9 @@
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, Header} from '@react-navigation/stack';
 import Splash from './screens/Splash';
-import {ScreenStackHeaderSearchBarView} from 'react-native-screens';
 import Home from './screens/Home';
+import Appointment from './screens/Appointment';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +19,11 @@ const AppNavigator = () => {
         <Stack.Screen
           component={Home}
           name="Home"
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          component={Appointment}
+          name="Appointment"
           options={{headerShown: false}}
         />
       </Stack.Navigator>

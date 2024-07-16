@@ -29,11 +29,14 @@ const styles = StyleSheet.create({
   back: {
     width: 24,
     height: 24,
+    justifyContent: 'center',
   },
   backBtn: {
     width: 30,
     height: 30,
     borderRadius: 15,
+    marginTop: 5,
+    alignSelf: 'center',
   },
   title: {
     fontSize: 20,
