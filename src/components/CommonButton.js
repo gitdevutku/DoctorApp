@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  Touchable,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
