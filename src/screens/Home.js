@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import LinearGradient from 'react-native-linear-gradient';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
 import CommonButton from '../components/CommonButton';
-import Appointment from './Appointment';
 
 const Home = ({navigation}) => {
   return (

@@ -4,7 +4,6 @@ import Header from '../components/Header';
 import {FlatList, ScrollView, TextInput} from 'react-native-gesture-handler';
 import CommonButton from '../components/CommonButton';
 import {KeyboardAvoidingView, Platform} from 'react-native';
-import Home from './Home';
 
 export default function Appointment({navigation}) {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(0);
@@ -36,17 +35,21 @@ export default function Appointment({navigation}) {
         <Text style={styles.spcl}>Skin Specialist</Text>
         <Text style={styles.heading}>Select Day</Text>
         <FlatList
-          numColumns={5}
+          horizontal
+          showsHorizontalScrollIndicator={false}
           data={generateDates(30)}
           renderItem={({item, index}) => (
             <TouchableOpacity
               style={[
                 styles.daySlot,
-                {borderColor: selectedDaySlot === index ? 'blue' : 'black'},
+                {
+                  backgroundColor:
+                    selectedDaySlot === index ? 'blue' : '#f2f2f2',
+                },
               ]}
               onPress={() => setSelectedDaySlot(index)}>
               <Text
-                style={{color: selectedDaySlot === index ? 'blue' : 'black'}}>
+                style={{color: selectedDaySlot === index ? 'white' : 'black'}}>
                 {item}
               </Text>
             </TouchableOpacity>
@@ -105,7 +108,15 @@ export default function Appointment({navigation}) {
           </TouchableOpacity>
         </View>
         <View style={{marginTop: 20, marginBottom: 20}}>
-          <CommonButton w={300} h={45} txt={'Book Now !'} status={true} />
+          <CommonButton
+            w={300}
+            h={45}
+            txt={'Book Now !'}
+            status={true}
+            onClick={() => {
+              navigation.navigate('Checked');
+            }}
+          />
         </View>
       </KeyboardAvoidingView>
     </ScrollView>
@@ -194,8 +205,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    marginLeft: 8,
+    marginLeft: 15,
     marginTop: 20,
+    marginBottom: 10,
     borderWidth: 0.5,
+    backgroundColor: '#f2f2f2',
+    elevation: 5,
   },
 });
