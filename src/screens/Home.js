@@ -7,77 +7,114 @@ import CommonButton from '../components/CommonButton';
 
 const Home = ({navigation}) => {
   return (
-    <ScrollView style={styles.container}>
-      <Header title="DocApp" icon={require('../images/logo.png')} />
-      <Image style={styles.banner} source={require('../images/banner.jpg')} />
-      <Text style={styles.heading}>Select a Field</Text>
-      <View style={styles.fieldContainer}>
-        <FlatList
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          data={[1, 2, 3, 4, 5, 6]}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => {
-            return (
-              <TouchableOpacity>
-                <LinearGradient
-                  colors={['#7EE8FA', '#EEC0C6']}
-                  style={styles.linearGradient}>
-                  <Text style={styles.buttonText}>
-                    {'Field ' + (index + 1)}
+    <View style={styles.container}>
+      <ScrollView style={styles.container}>
+        <Header title="DocApp" icon={require('../images/logo.png')} />
+        <Image style={styles.banner} source={require('../images/banner.jpg')} />
+        <Text style={styles.heading}>Select a Field</Text>
+        <View style={styles.fieldContainer}>
+          <FlatList
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={[1, 2, 3, 4, 5, 6]}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item, index}) => {
+              return (
+                <TouchableOpacity>
+                  <LinearGradient
+                    colors={['#7EE8FA', '#EEC0C6']}
+                    style={styles.linearGradient}>
+                    <Text style={styles.buttonText}>
+                      {'Field ' + (index + 1)}
+                    </Text>
+                  </LinearGradient>
+                </TouchableOpacity>
+              );
+            }}
+          />
+        </View>
+        <Text style={styles.heading}>Top Rated Doctors</Text>
+        <View style={styles.doctorContainer}>
+          <FlatList
+            numColumns={2}
+            data={[1, 2, 3, 4, 5, 6]}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item, index}) => {
+              const isAvailable = index % 2 === 0;
+              return (
+                <View style={styles.docItem}>
+                  <Image
+                    style={styles.docpng}
+                    source={require('../images/doctor.png')}
+                  />
+                  <Text style={styles.docText}>{'Doctor ' + (index + 1)}</Text>
+                  <Text style={styles.docSpec}>
+                    {'Specialist ' + (index + 1)}
                   </Text>
-                </LinearGradient>
-              </TouchableOpacity>
-            );
-          }}
-        />
+                  <Text
+                    style={[
+                      styles.status,
+                      {
+                        color: isAvailable ? 'green' : 'red',
+                        opacity: isAvailable ? 1 : 0.5,
+                      },
+                    ]}>
+                    {isAvailable ? 'Available' : 'Busy'}
+                  </Text>
+                  <CommonButton
+                    style={styles.btnAppoint}
+                    w={'100%'}
+                    h={40}
+                    txt={'Make an Appointment'}
+                    status={isAvailable ? true : false}
+                    onClick={() => {
+                      if (isAvailable) {
+                        navigation.navigate('Appointment');
+                      }
+                    }}
+                  />
+                </View>
+              );
+            }}
+          />
+        </View>
+      </ScrollView>
+      <View style={styles.bottomView}>
+        <View style={{marginLeft: 50}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Completed');
+            }}>
+            <Image
+              style={styles.completed}
+              source={require('../images/completed.png')}></Image>
+            <Text style={{fontWeight: '700'}}>Completed</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{marginRight: 20}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Pending');
+            }}>
+            <Image
+              style={styles.pending}
+              source={require('../images/pending.png')}></Image>
+            <Text style={{fontWeight: '700'}}>Pending</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{marginRight: 50}}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Ambulance');
+            }}>
+            <Image
+              style={styles.ambulance}
+              source={require('../images/ambulance.png')}></Image>
+            <Text style={{fontWeight: '700'}}>Urgent</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-      <Text style={styles.heading}>Top Rated Doctors</Text>
-      <View style={styles.doctorContainer}>
-        <FlatList
-          numColumns={2}
-          data={[1, 2, 3, 4, 5, 6]}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({item, index}) => {
-            const isAvailable = index % 2 === 0;
-            return (
-              <View style={styles.docItem}>
-                <Image
-                  style={styles.docpng}
-                  source={require('../images/doctor.png')}
-                />
-                <Text style={styles.docText}>{'Doctor ' + (index + 1)}</Text>
-                <Text style={styles.docSpec}>
-                  {'Specialist ' + (index + 1)}
-                </Text>
-                <Text
-                  style={[
-                    styles.status,
-                    {
-                      color: isAvailable ? 'green' : 'red',
-                      opacity: isAvailable ? 1 : 0.5,
-                    },
-                  ]}>
-                  {isAvailable ? 'Available' : 'Busy'}
-                </Text>
-                <CommonButton
-                  style={styles.btnAppoint}
-                  w={'100%'}
-                  h={40}
-                  txt={'Make an Appointment'}
-                  status={isAvailable ? true : false}
-                  onClick={() => {
-                    if (isAvailable) {
-                      navigation.navigate('Appointment');
-                    }
-                  }}
-                />
-              </View>
-            );
-          }}
-        />
-      </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -163,5 +200,35 @@ const styles = StyleSheet.create({
     marginTop: 5,
     fontWeight: '600',
     alignSelf: 'center',
+  },
+  bottomView: {
+    width: '100%',
+    height: 80,
+    borderRadius: 10,
+    elevation: 5,
+    position: 'absolute',
+    bottom: 20,
+    alignSelf: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#F2f2f2',
+  },
+  completed: {
+    marginTop: 10,
+    alignSelf: 'center',
+    width: 40,
+    height: 40,
+  },
+  pending: {
+    marginTop: 10,
+    alignSelf: 'center',
+    width: 40,
+    height: 40,
+  },
+  ambulance: {
+    marginTop: 10,
+    alignSelf: 'center',
+    width: 40,
+    height: 40,
   },
 });

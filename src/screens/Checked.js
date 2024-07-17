@@ -8,9 +8,7 @@ export default function Checked({navigation}) {
       <Image
         style={styles.checkedImg}
         source={require('../images/checked.png')}></Image>
-      <Text style={styles.checkedText}>
-        Your appointment succesfully booked.
-      </Text>
+      <Text style={styles.checkedText}>Your request succesfully issued.</Text>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('Home');
