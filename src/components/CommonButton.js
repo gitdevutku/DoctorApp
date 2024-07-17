@@ -18,7 +18,7 @@ export default function CommonButton({w, h, txt, onClick, status}) {
       style={{alignSelf: 'center', marginTop: 10, marginBottom: 10}}>
       {status ? (
         <LinearGradient
-          colors={['#191714', '#2234AE']}
+          colors={['#97CC04', '#2D7DD2']}
           style={{
             width: w,
             height: h,
@@ -27,7 +27,7 @@ export default function CommonButton({w, h, txt, onClick, status}) {
             borderRadius: 10,
             padding: 10,
           }}>
-          <Text style={{color: '#FFF', fontSize: 16}}>{txt}</Text>
+          <Text style={{color: 'white', fontSize: 16}}>{txt}</Text>
         </LinearGradient>
       ) : (
         <LinearGradient

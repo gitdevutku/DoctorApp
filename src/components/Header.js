@@ -1,11 +1,13 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-
-const Header = ({title, icon}) => {
+const Header = ({title, icon, onPress}) => {
   return (
     <View style={styles.Header}>
-      <TouchableOpacity style={styles.backBtn} underlayColor="#f2f2f2">
+      <TouchableOpacity
+        onPress={onPress}
+        style={styles.backBtn}
+        underlayColor="#f2f2f2">
         <Image style={styles.back} source={icon}></Image>
       </TouchableOpacity>
 
